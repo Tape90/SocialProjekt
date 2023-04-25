@@ -1,7 +1,7 @@
 export default function Feed({title, text}) {
     return (
         <>
-            <div class="col-sm-6 cardtopdistance">
+            <div class="col-sm">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{title}</h5>

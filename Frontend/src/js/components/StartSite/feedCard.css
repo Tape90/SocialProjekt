@@ -1,14 +1,3 @@
-.carddiv {
-    padding-left: 5%;
-    padding-right: 5%;
-}
-
-.cardtopdistance {
+.feed {
     padding-top: 20px;
-}
-
-.align-items{
-    /* width: 100vw; */
-    display: flex;
-    justify-content: center;
 }

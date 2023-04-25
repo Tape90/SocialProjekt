@@ -1,0 +1,11 @@
+.form-control:focus {
+    box-shadow: none;
+}
+
+.back:hover {
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}

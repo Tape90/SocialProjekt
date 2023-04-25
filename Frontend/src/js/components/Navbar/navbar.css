@@ -2,4 +2,6 @@ img {
     height: 50px;
 }
 
-
+.textDecoration {
+    text-decoration: none;
+}
