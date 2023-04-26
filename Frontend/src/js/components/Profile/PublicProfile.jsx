@@ -1,6 +1,6 @@
 import "./profile.css"
 
-export default function Profile() {
+export default function PublicProfile() {
   return (
     <div class="container rounded bg-white mt-5 mb-5">
       <div class="row">
@@ -19,7 +19,7 @@ export default function Profile() {
         <div class="col-md-5 border-right">
           <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="text-right">Profile Settings</h4>
+              <h4 class="text-right">Profile</h4>
             </div>
             <div class="row mt-2">
               <div class="col-md-6">
@@ -92,17 +92,7 @@ export default function Profile() {
                 />
               </div>
             </div>
-            <div class="mt-5 text-center">
-              <button class="btn btn-primary" type="button">
-                Save Profile
-              </button>
-            </div>
-            {/* <div class="mt-5 text-center">
-              <button class="btn btn-outline-primary" type="button">
-                Change Password
-              </button>
-            </div> */}
-          </div>
+        </div>
         </div>
         <div class="col-md-4">
           <div class="p-3 py-5">

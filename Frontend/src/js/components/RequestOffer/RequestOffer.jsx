@@ -1,90 +1,147 @@
-export default function RequestOffer() {
+import { useRef } from "react";
+import { uuid4 } from "uuid4";
+
+export default function RequestOffer({ offer, setOffer, request, setRequest }) {
+  const typeRef = useRef();
+  const catastropheRef = useRef();
+  const titleRef = useRef();
+  const regionRef = useRef();
+  const periodRef = useRef();
+  const contactRef = useRef();
+  const descriptionRef = useRef();
+
+  const addOfferRequest = () => {
+    if (
+      typeRef.current.value |
+      catastropheRef.current.value |
+      titleRef.current.value |
+      regionRef.current.value |
+      periodRef.current.value |
+      contactRef.current.value |
+      descriptionRef.current.value === "")
+     {
+      alert("Please fill out all fields!");
+    } else {
+      const newOfferRequest = {
+        id: uuid4(),
+        type: typeRef.current.value,
+        catastrophe: catastropheRef.current.value,
+        title: titleRef.current.value,
+        region: regionRef.current.value,
+        period: periodRef.current.value,
+        contact: contactRef.current.value,
+        description: descriptionRef.current.value,
+      };
+
+      if (typeRef.current.value === "Offer") {
+        setOffer([...offer, newOfferRequest]);
+
+        console.log(offer);
+      } else {
+        setRequest([...request, newOfferRequest]);
+
+        console.log(request);
+      }
+    }
+  };
 
   return (
-    <div class="container rounded bg-white mt-5 mb-5">
-
-
-      <div class="">
-        <div class="p-3 py-5 ">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="text-right">New Request / Offer</h4>
+    <div className="container rounded bg-white mt-5 mb-5">
+      <div className="">
+        <div className="p-3 py-5 ">
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h4 className="text-right">New Request / Offer</h4>
           </div>
 
-          <div class="row mt-3">
-            <div class="col-md-12">
-              <label class="labels">Type</label>
-              <select class="form-select" aria-label="Default select example">
-
-                <option selected>Request or Offer</option>
-                <option value="1">Request</option>
-                <option value="2">Offer</option>
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <label className="labels">Type</label>
+              <select
+                ref={typeRef}
+                className="form-select"
+                aria-label="Default select example"
+              >
+                <option select></option>
+                <option value="Request">Request</option>
+                <option value="Offer">Offer</option>
               </select>
             </div>
 
-            <div class="col-md-12">
-              <label class="labels">Catastrophe</label>
-              <select class="form-select" aria-label="Default select example">
-                <option selected>Kind of Catastrophe</option>
-                <option value="1">Hochwasser</option>
-                <option value="2">Stromausfall</option>
-                <option value="3">Starkregen</option>
-                <option value="4">Erdbeben</option>
+            <div className="col-md-12">
+              <label className="labels">Catastrophe</label>
+              <select
+                ref={catastropheRef}
+                className="form-select"
+                aria-label="Default select example"
+              >
+                <option select></option>
+                <option value="Flood">Flood</option>
+                <option value="Power failure">Power failure</option>
+                <option value="Heavy rain">Heavy rain</option>
+                <option value="Earthquake">Earthquake</option>
               </select>
             </div>
 
-            <div class="col-md-12">
-              <label class="labels">Title</label>
+            <div className="col-md-12">
+              <label className="labels">Title</label>
               <input
+                ref={titleRef}
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="short Title / description"
+                required
               />
             </div>
-            <div class="col-md-12">
+            <div className="col-md-12">
               <label class="labels">Region</label>
               <input
+                ref={regionRef}
                 type="text"
                 class="form-control"
                 placeholder="enter your region"
               />
             </div>
-            <div class="col-md-12">
+            <div className="col-md-12">
               <label class="labels">Period</label>
               <input
+                ref={periodRef}
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="enter the Period"
               />
             </div>
-            <div class="col-md-12">
+            <div className="col-md-12">
               <label class="labels">Contact</label>
               <input
+                ref={contactRef}
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="your Contact details"
               />
             </div>
-            <div class="col-md-12">
-              <label class="labels">Description</label>
+            <div className="col-md-12">
+              <label className="labels">Description</label>
               <textarea
+                ref={descriptionRef}
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="Enter a Description"
                 rows="4"
               />
             </div>
           </div>
 
-          <div class="mt-5 text-center">
-            <button class="btn btn-primary" type="button">
+          <div className="mt-5 text-center">
+            <button
+              onClick={addOfferRequest}
+              class="btn btn-primary"
+              type="button"
+            >
               Save
             </button>
           </div>
-
         </div>
       </div>
-
-
     </div>
-  )
+  );
 }
