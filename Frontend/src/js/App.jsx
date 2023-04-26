@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //CSS
 import '../scss/App.css'
 import FeedCard from './components/StartSite/FeedCards'
+import RequestOffer from './components/RequestOffer/RequestOffer';
 
 
 
@@ -24,7 +25,8 @@ function App() {
         <Route path='/' element={<FeedCard />}></Route>
         <Route path='/Login' element={<Login />}></Route>
         <Route path='/Profile' element={<Profile />}></Route>
-       </Routes>
+        <Route path='/Offer' element={<RequestOffer />}></Route>
+        </Routes>
       <Footer/>
       </Router>
     </div>

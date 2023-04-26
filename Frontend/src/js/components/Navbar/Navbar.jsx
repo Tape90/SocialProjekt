@@ -16,7 +16,7 @@ export default function Navbar() {
             <Link className="textDecoration" to={'/'}> <a class="nav-link active">Home</a> </Link>
             </li>
             <li class="nav-item">
-            <Link className="textDecoration" to={'/Angebote'}> <a class="nav-link">New request/offer</a> </Link>
+            <Link className="textDecoration" to={'/Offer'}> <a class="nav-link">New request/offer</a> </Link>
             </li>
           </ul>
           {/* <form class="d-flex" role="search">
