@@ -12,20 +12,30 @@ export default function FeedCard({ offer, setOffer, request, setRequest }) {
           <div className="frame col-sm feed">
             <h1>Request</h1>
             {request.map((el) => {
-              return(
-                <Feed catastrophe={el.catastrophe} title={el.title} text={el.description} region={el.region}/>
+              return (
+                <Feed 
+                  id={el.id} 
+                  catastrophe={el.catastrophe} 
+                  title={el.title} 
+                  text={el.description} 
+                  region={el.region} />
               )
             })}
-            
+
           </div>
           <div className="frame col-sm feed">
             <h1>Offer</h1>
             {offer.map((el) => {
-              return(
-                <Feed catastrophe={el.catastrophe} title={el.title} text={el.description} region={el.region}/>
+              return (
+                <Feed
+                  id={el.id} 
+                  catastrophe={el.catastrophe} 
+                  title={el.title} 
+                  text={el.description} 
+                  region={el.region} />
               )
             })}
-           
+
           </div>
         </div>
       </div>

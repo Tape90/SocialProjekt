@@ -1,18 +1,20 @@
-export default function Feed({catastrophe, title, text, region }) {
+import { Fragment } from "react";
+
+export default function Feed({id, catastrophe, title, text, region }) {
   return (
-    <>
-      <div class="col-sm p-1">
-        <div class="card">
-          <div class="card-header">{catastrophe} - {region}</div>
-          <div class="card-body">
-            <h5 class="card-title">{title}</h5>
-            <p class="card-text">{text}</p>
-            <a href="#" class="btn btn-primary">
+    <Fragment>
+      <div key={id} className="col-sm p-1">
+        <div className="card">
+          <div className="card-header">{catastrophe} - {region}</div>
+          <div className="card-body">
+            <h5 className="card-title">{title}</h5>
+            <p className="card-text">{text}</p>
+            <button className="btn btn-primary">
               Mehr
-            </a>
+            </button>
           </div>
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }

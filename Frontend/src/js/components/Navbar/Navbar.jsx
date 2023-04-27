@@ -4,28 +4,28 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
   return (
     <>
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand">Kat-Net-App</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-expand-lg bg-light">
+      <div className="container-fluid">
+        <div className="navbar-brand">Kat-Net-App</div>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-            <Link className="textDecoration" to={'/'}> <a class="nav-link active">Home</a> </Link>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+            <Link className="textDecoration" to={'/'}> <div className="nav-link active">Home</div> </Link>
             </li>
-            <li class="nav-item">
-            <Link className="textDecoration" to={'/Offer'}> <a class="nav-link">New request/offer</a> </Link>
+            <li className="nav-item">
+            <Link className="textDecoration" to={'/Offer'}> <div className="nav-link">New request/offer</div> </Link>
             </li>
           </ul>
           {/* <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form> */}
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-            <Link className="textDecoration" to={'/Login'}> <a class="nav-link">Login</a> </Link>
+          <ul className="navbar-nav mb-2 mb-lg-0">
+            <li className="nav-item">
+            <Link className="textDecoration" to={'/Login'}> <div className="nav-link">Login</div> </Link>
             </li>
           </ul>
         </div>

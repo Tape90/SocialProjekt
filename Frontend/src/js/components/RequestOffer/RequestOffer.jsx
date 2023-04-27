@@ -93,16 +93,16 @@ export default function RequestOffer({ offer, setOffer, request, setRequest }) {
               />
             </div>
             <div className="col-md-12">
-              <label class="labels">Region</label>
+              <label className="labels">Region</label>
               <input
                 ref={regionRef}
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="enter your region"
               />
             </div>
             <div className="col-md-12">
-              <label class="labels">Period</label>
+              <label className="labels">Period</label>
               <input
                 ref={periodRef}
                 type="text"
@@ -111,7 +111,7 @@ export default function RequestOffer({ offer, setOffer, request, setRequest }) {
               />
             </div>
             <div className="col-md-12">
-              <label class="labels">Contact</label>
+              <label className="labels">Contact</label>
               <input
                 ref={contactRef}
                 type="text"
@@ -134,7 +134,7 @@ export default function RequestOffer({ offer, setOffer, request, setRequest }) {
           <div className="mt-5 text-center">
             <button
               onClick={addOfferRequest}
-              class="btn btn-primary"
+              className="btn btn-primary"
               type="button"
             >
               Save

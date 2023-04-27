@@ -3,40 +3,40 @@ import { Link } from "react-router-dom";
 
 export default function Register() {
   return (
-      <div class="width">
-        <div class="card">
-          <article class="card-body">
-            <h4 class="card-title mb-4 mt-1">Sign up</h4>
+      <div className="width">
+        <div className="card">
+          <article className="card-body">
+            <h4 className="card-title mb-4 mt-1">Sign up</h4>
             <form>
-              <div class="form-group">
+              <div className="form-group">
                 <label>Your email</label>
                 <input
                   name=""
-                  class="form-control"
+                  className="form-control"
                   placeholder="Email"
                   type="email"
                 />
               </div>
-              <div class="form-group padding">
+              <div className="form-group padding">
                 <label>Your password</label>
                 <input
-                  class="form-control"
+                  className="form-control"
                   placeholder="******"
                   type="password"
                 />
               </div>
 
-              <div class="form-group padding">
+              <div className="form-group padding">
                 <label>Repeat password</label>
                 <input
-                  class="form-control"
+                  className="form-control"
                   placeholder="******"
                   type="password"
                 />
               </div>
 
-              <div class="form-group text-center padding">
-              <Link to={'/Profile'}><button type="submit" class="btn btn-primary btn-block">
+              <div className="form-group text-center padding">
+              <Link to={'/Profile'}><button type="submit" className="btn btn-primary btn-block">
                   Create Account
                 </button>
                 </Link>
