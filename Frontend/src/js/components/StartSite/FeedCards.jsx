@@ -14,7 +14,8 @@ export default function FeedCard({ offer, setOffer, request, setRequest }) {
             {request.map((el) => {
               return (
                 <Feed 
-                  id={el.id} 
+                  key={el.id}
+                  element={el} 
                   catastrophe={el.catastrophe} 
                   title={el.title} 
                   text={el.description} 
@@ -28,7 +29,8 @@ export default function FeedCard({ offer, setOffer, request, setRequest }) {
             {offer.map((el) => {
               return (
                 <Feed
-                  id={el.id} 
+                  key={el.id}
+                  element={el} 
                   catastrophe={el.catastrophe} 
                   title={el.title} 
                   text={el.description} 

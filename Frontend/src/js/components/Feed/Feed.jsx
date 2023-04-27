@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 
-export default function Feed({id, catastrophe, title, text, region }) {
+export default function Feed({catastrophe, title, text, region, element }) {
   return (
     <Fragment>
-      <div key={id} className="col-sm p-1">
+      <div id={element.id} className="col-sm p-1">
         <div className="card">
           <div className="card-header">{catastrophe} - {region}</div>
           <div className="card-body">
