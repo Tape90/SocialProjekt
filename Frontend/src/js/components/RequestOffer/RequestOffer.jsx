@@ -89,7 +89,6 @@ export default function RequestOffer({ offer, setOffer, request, setRequest }) {
                 type="text"
                 className="form-control"
                 placeholder="short Title / description"
-                required
               />
             </div>
             <div className="col-md-12">
