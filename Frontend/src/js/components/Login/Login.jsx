@@ -30,13 +30,13 @@ export default function Login() {
               </div>
 
               <div className="form-group text-center padding">
-                <Link to={'/Profile'}><button type="submit" className="btn btn-primary btn-block">
+                <Link to={'/Profile'}><button type="submit" className="btn btn-danger btn-block">
                   Login
                 </button>
                 </Link>
               </div>
               <div className="form-group text-center padding">
-              <Link to={'/Register'}><button type="submit" className="float-right btn btn-outline-primary">
+              <Link to={'/Register'}><button type="submit" className="float-right btn btn-outline-danger">
                   Sign up
                 </button>
                 </Link>

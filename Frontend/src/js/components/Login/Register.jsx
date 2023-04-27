@@ -36,7 +36,7 @@ export default function Register() {
               </div>
 
               <div className="form-group text-center padding">
-              <Link to={'/Profile'}><button type="submit" className="btn btn-primary btn-block">
+              <Link to={'/Profile'}><button type="submit" className="btn btn-danger btn-block">
                   Create Account
                 </button>
                 </Link>

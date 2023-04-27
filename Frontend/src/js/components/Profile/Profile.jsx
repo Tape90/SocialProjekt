@@ -93,7 +93,7 @@ export default function Profile() {
               </div>
             </div>
             <div className="mt-5 text-center">
-              <button className="btn btn-primary" type="button">
+              <button className="btn btn-danger" type="button">
                 Save Profile
               </button>
             </div>

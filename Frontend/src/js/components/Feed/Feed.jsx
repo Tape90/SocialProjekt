@@ -9,7 +9,7 @@ export default function Feed({catastrophe, title, text, region, element }) {
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{text}</p>
-            <button className="btn btn-primary">
+            <button className="btn btn-danger">
               Mehr
             </button>
           </div>

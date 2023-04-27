@@ -134,7 +134,7 @@ export default function RequestOffer({ offer, setOffer, request, setRequest }) {
           <div className="mt-5 text-center">
             <button
               onClick={addOfferRequest}
-              className="btn btn-primary"
+              className="btn btn-danger"
               type="button"
             >
               Save
