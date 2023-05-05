@@ -10,29 +10,45 @@ import PublicProfile from './components/Profile/PublicProfile'
 import useOffer from './customHooks/useOffer'
 import useRequest from './customHooks/useRequest'
 import useUser from './customHooks/useUser'
+import { useState, useEffect } from 'react'
 
 //BrowserRouter
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 //CSS
 import '../scss/App.css'
 
 function App() {
 
-  const [offer, setOffer] = useOffer();
-  const [request, setRequest] = useRequest();
+  const [offer, setOffer, getOffer] = useOffer();
+  const [request, setRequest, getRequest] = useRequest();
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      console.log("token exist")
+      setisLoggedIn(true);
+    }
+  },[])
+  const handleLogin = () => {
+    setisLoggedIn(true);
+  };
+  const handleLogout = () => {
+    setisLoggedIn(false);
+  };
 
   return (
     <div className="App">
       <Router>
       <Navbar />
       <Routes>
-        <Route path='/' element={<FeedCard offer={offer} setOffer={setOffer} request={request} setRequest={setRequest}/>}></Route>
-        <Route path='/Login' element={<Login />}></Route>
+        <Route path='/Login' element={<Login handleLogin={handleLogin}/>}></Route>
         <Route path='/Profile' element={<Profile />}></Route>
-        <Route path='/Offer' element={<RequestOffer offer={offer} setOffer={setOffer} request={request} setRequest={setRequest}/>}></Route>
+        <Route path='/Offer' element={<RequestOffer offer={offer} setOffer={setOffer} request={request} setRequest={setRequest} getOffer={getOffer} getRequest={getRequest}/>}></Route>
         <Route path='/Register' element={<Register />} />
         <Route path='/Public' element={<PublicProfile />} />
+        <Route path='/' element={isLoggedIn ? <FeedCard offer={offer} setOffer={setOffer} request={request} setRequest={setRequest} getOffer={getOffer} getRequest={getRequest} handleLogout={handleLogout}/> : <Navigate to="/Login" replace />}></Route>
         </Routes>
       <Footer/>
       </Router>

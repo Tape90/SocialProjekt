@@ -1,6 +1,8 @@
 import { Fragment } from "react";
 
+
 export default function Feed({catastrophe, title, text, region, element }) {
+
   return (
     <Fragment>
       <div id={element.id} className="col-sm p-1">
@@ -9,12 +11,16 @@ export default function Feed({catastrophe, title, text, region, element }) {
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{text}</p>
-            <button className="btn btn-danger">
+            <div><img className="" src={element.imageUrl}/></div>
+            <button className="mt-2 btn btn-danger">
               Mehr
             </button>
           </div>
         </div>
       </div>
+
+
+
     </Fragment>
   );
 }

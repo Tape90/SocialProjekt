@@ -1,10 +1,7 @@
 .form-control:focus {
-    box-shadow: none;
-}
-
-.back:hover {
-    cursor: pointer
-}
+        border-color: #d60c0c;
+        box-shadow: none;
+    } 
 
 .labels {
     font-size: 11px
