@@ -3,6 +3,6 @@ import "./footer.css";
 export default function Footer() {
   return( 
   <>
-    <p className="footer">Made by Jens</p>
+    <p className="footer">Kat-Net-App</p>
   </>
 )}

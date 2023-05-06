@@ -160,10 +160,12 @@ app.post('/api/register', limiter,  async(req, res) => {
 
 app.post('/api/login', async (req, res) => {
 
+ // res.send("Success")
+
   const {email, password} = req.body;
   // User bereits vorhanden?
-  const existUser = await User.findOne(email);
-  if (!userExist) {
+  const existUser = await User.findOne({email});
+  if (!existUser) {
     return res.send({message: "User does not exist"});
   }
 

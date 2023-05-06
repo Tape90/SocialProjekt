@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios";
 
-export default function Login() {
+export default function Login(handleLogin) {
   const navigator = useNavigate();
   const formRef = useRef();
 
@@ -17,7 +17,7 @@ export default function Login() {
     console.log(dataForm)
     const config = {
       url: "http://localhost:3001/api/login",
-      mehtod: "POST",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -27,8 +27,8 @@ export default function Login() {
       const resp = await axios(config);
       console.log(resp);
       localStorage.setItem("token", resp.data.token);
-      handleLogin();
-      navigator("/feed");
+      handleLogin;
+      navigator("/");
     } catch (error) {
       console.log(error);
     }

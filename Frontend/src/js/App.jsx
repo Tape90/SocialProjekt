@@ -23,6 +23,7 @@ function App() {
   const [offer, setOffer, getOffer] = useOffer();
   const [request, setRequest, getRequest] = useRequest();
   const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [loginText, setLoginText] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -33,19 +34,21 @@ function App() {
   },[])
   const handleLogin = () => {
     setisLoggedIn(true);
+    setLoginText(true);
   };
   const handleLogout = () => {
     setisLoggedIn(false);
+    //localStorage.removeItem("token");
   };
 
   return (
     <div className="App">
       <Router>
-      <Navbar />
+      <Navbar loginText = {loginText} setLoginText = {setLoginText}/>
       <Routes>
         <Route path='/Login' element={<Login handleLogin={handleLogin}/>}></Route>
         <Route path='/Profile' element={<Profile />}></Route>
-        <Route path='/Offer' element={<RequestOffer offer={offer} setOffer={setOffer} request={request} setRequest={setRequest} getOffer={getOffer} getRequest={getRequest}/>}></Route>
+        <Route path='/Offer' element={isLoggedIn ? <RequestOffer offer={offer} setOffer={setOffer} request={request} setRequest={setRequest} getOffer={getOffer} getRequest={getRequest} /> : <Navigate to="/Login" replace/>}></Route>
         <Route path='/Register' element={<Register />} />
         <Route path='/Public' element={<PublicProfile />} />
         <Route path='/' element={isLoggedIn ? <FeedCard offer={offer} setOffer={setOffer} request={request} setRequest={setRequest} getOffer={getOffer} getRequest={getRequest} handleLogout={handleLogout}/> : <Navigate to="/Login" replace />}></Route>
