@@ -9,6 +9,7 @@ import Register from './components/Login/Register'
 import PublicProfile from './components/Profile/PublicProfile'
 import useOffer from './customHooks/useOffer'
 import useRequest from './customHooks/useRequest'
+import PublicRequestOffer from './components/RequestOffer/PublicRequestOffer'
 import useUser from './customHooks/useUser'
 import { useState, useEffect } from 'react'
 
@@ -52,6 +53,7 @@ function App() {
         <Route path='/Register' element={<Register />} />
         <Route path='/Public' element={<PublicProfile />} />
         <Route path='/' element={isLoggedIn ? <FeedCard offer={offer} setOffer={setOffer} request={request} setRequest={setRequest} getOffer={getOffer} getRequest={getRequest} handleLogout={handleLogout}/> : <Navigate to="/Login" replace />}></Route>
+        <Route path='/catastrophe/:id' element={<PublicRequestOffer offer={offer} request={request} /> }/> 
         </Routes>
       <Footer/>
       </Router>

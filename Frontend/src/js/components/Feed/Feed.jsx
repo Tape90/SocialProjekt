@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-
+import { Link } from "react-router-dom";
 
 export default function Feed({catastrophe, title, text, region, element }) {
 
@@ -12,9 +12,9 @@ export default function Feed({catastrophe, title, text, region, element }) {
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{text}</p>
             <div><img className="" src={element.imageUrl}/></div>
-            <button className="mt-2 btn btn-danger">
+            <Link to={`/catastrophe/${element.id}`}><button className="mt-2 btn btn-danger">
               Mehr
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>
