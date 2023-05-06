@@ -2,7 +2,7 @@ import './navbar.css'
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-export default function Navbar() {
+export default function Navbar({isLoggedIn}) {
 
 
 

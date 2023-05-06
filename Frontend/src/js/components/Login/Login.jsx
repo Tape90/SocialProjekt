@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios";
 
-export default function Login(handleLogin) {
+export default function Login({handleLogin}) {
   const navigator = useNavigate();
   const formRef = useRef();
 
@@ -27,7 +27,7 @@ export default function Login(handleLogin) {
       const resp = await axios(config);
       console.log(resp);
       localStorage.setItem("token", resp.data.token);
-      handleLogin;
+      handleLogin();
       navigator("/");
     } catch (error) {
       console.log(error);

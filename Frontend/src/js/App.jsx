@@ -30,19 +30,21 @@ function App() {
       console.log("token exist")
       setisLoggedIn(true);
     }
-  },[])
+  },[]);
+
   const handleLogin = () => {
     setisLoggedIn(true);
   };
+  
   const handleLogout = () => {
     setisLoggedIn(false);
-    //localStorage.removeItem("token");
+    localStorage.removeItem("token");
   };
 
   return (
     <div className="App">
       <Router>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn}/>
       <Routes>
         <Route path='/Login' element={<Login handleLogin={handleLogin}/>}></Route>
         <Route path='/Profile' element={<Profile />}></Route>
