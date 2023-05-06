@@ -1,10 +1,18 @@
 import './navbar.css'
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function Navbar({isLoggedIn}) {
+export default function Navbar({isLoggedIn, handleLogout}) {
 
+  const navigator = useNavigate();
 
+  const handleClick = () => {
+    //console.log("klick");
+    if (isLoggedIn) {
+      handleLogout();
+    } else {
+      navigator("/Login")
+    }
+  }
 
 
   return (
@@ -30,7 +38,7 @@ export default function Navbar({isLoggedIn}) {
           </form> */}
           <ul className="navbar-nav mb-2 mb-lg-0">
             <li className="nav-item">
-            <Link className="textDecoration" to={'/Login'}> <div className="text-danger nav-link">Login</div> </Link>
+            <div onClick={handleClick} className="pointer text-danger nav-link">{isLoggedIn ? "Logout" : "Login"}</div>
             </li>
           </ul>
         </div>

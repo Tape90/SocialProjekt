@@ -10,7 +10,6 @@ export default function FeedCard({ offer, setOffer, request, setRequest, getOffe
     <>
       <div className="container">
         <div className="row gap">
-          <button onClick={handleLogout}>Logout</button>
           <div className="frame col-sm feed">
             <h1>Request</h1>
             {request.map((el) => {

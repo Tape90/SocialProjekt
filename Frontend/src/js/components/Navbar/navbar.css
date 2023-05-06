@@ -5,3 +5,7 @@ img {
 .textDecoration {
     text-decoration: none;
 }
+
+.pointer {
+    cursor: pointer;
+}
