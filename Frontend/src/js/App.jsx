@@ -23,18 +23,15 @@ function App() {
   const [offer, setOffer, getOffer] = useOffer();
   const [request, setRequest, getRequest] = useRequest();
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [loginText, setLoginText] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       console.log("token exist")
-      setisLoggedIn(true);
     }
   },[])
   const handleLogin = () => {
     setisLoggedIn(true);
-    setLoginText(true);
   };
   const handleLogout = () => {
     setisLoggedIn(false);
@@ -44,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Navbar loginText = {loginText} setLoginText = {setLoginText}/>
+      <Navbar />
       <Routes>
         <Route path='/Login' element={<Login handleLogin={handleLogin}/>}></Route>
         <Route path='/Profile' element={<Profile />}></Route>

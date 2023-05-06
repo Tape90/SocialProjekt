@@ -2,45 +2,9 @@ import './navbar.css'
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-export default function Navbar({loginText, setLoginText}) {
+export default function Navbar() {
 
-  const [text, setText] = useState("Login");
 
-  const setSetterLogin = () => {
-    if (!loginText) {
-      setLoginText(!loginText);
-  }
-}
-
-  const textLogin = () => {
-    setSetterLogin();
-    if (loginText) {
-      setText("Login")
-    } else {
-      setText("Logout")
-    }
-  }
-
-  // let textLoginorLogout = "Login";
-
-  // const loginOrLogout = () => {
-
-  //   if (isLoggedIn) {
-  //     textLoginorLogout = "Logout";
-  //   } else {
-  //     textLoginorLogout = "Login"
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   loginOrLogout();
-  // },[])
-  
-  // useEffect(() => {
-  //   loginOrLogout();
-  // },[isLoggedIn])
-
-  // console.log(textLoginorLogout);
 
 
   return (
@@ -66,7 +30,7 @@ export default function Navbar({loginText, setLoginText}) {
           </form> */}
           <ul className="navbar-nav mb-2 mb-lg-0">
             <li className="nav-item">
-            <Link className="textDecoration" to={'/Login'}> <div className="text-danger nav-link">{text}</div> </Link>
+            <Link className="textDecoration" to={'/Login'}> <div className="text-danger nav-link">Login</div> </Link>
             </li>
           </ul>
         </div>
