@@ -40,6 +40,7 @@ app.use(async function (req, res, next) {
 const userSchema = new mongoose.Schema({
     firstname: String,
     lastname: String,
+    nickname: String,
     email: String,
     phone: String,
     password: String,
@@ -64,7 +65,8 @@ const seekorfindSchema = new mongoose.Schema({
     period: String,
     contact: String,
     description: String,
-    imageUrl: String
+    imageUrl: String,
+    commentar: Array
 });
 
 const Offer = mongoose.model('offer', seekorfindSchema)
@@ -130,7 +132,7 @@ app.use(express.json());
 // });
 
 app.post('/api/register', limiter,  async(req, res) => {
-    const { email, password, id } = req.body;
+    const { email, password, id, nickname } = req.body;
      
     //User bereits vorhanden?
 
@@ -145,7 +147,7 @@ app.post('/api/register', limiter,  async(req, res) => {
       const salt = await bcrypt.genSalt(10);
       const hashedPassord = await bcrypt.hash(password, salt);
       //neuen User erstellen
-      const user = new User({email, id, password: hashedPassord});
+      const user = new User({email, id, nickname, password: hashedPassord});
       //neuen User hochladen
       try {
         await User.create(user);
@@ -182,10 +184,40 @@ app.post('/api/login', async (req, res) => {
     res.send({token, message: "Login successful"});
 })
 
+app.put('/api/commentar', async(req, res) => {
+  const {commentar, id, type} = req.body;
+  let nickname;
+  //Token validieren
+  const token = req.headers.authorization.split(" ")[1];
+  const decodedToken = jwt.verify(token, process.env.JWT_Secret)
+  const userId = decodedToken.id;
 
-// app.delelte zum Löschen
+  res.send(userId);
 
-// app.put zum Aktualisieren
+  //Nickname aus Datenbank abrufen
+  try{
+  const user = await User.findOne({_id: userId});
+  console.log(user)
+  nickname = user.nickname;
+  console.log(nickname)
+ 
+  } catch (error) {
+    res.send(`Error bei Nickname: ${error}`)
+  }
+
+    //Neuen array für eintrag erstellen
+    const newComment = [commentar, nickname]
+    console.log(newComment);
+
+    if (type === "Request") {
+      const eintrag = await Request.findOneAndUpdate({id: id}, {$push: {commentar: newComment}});
+      console.log(eintrag);
+    } else {
+      const eintrag = await Offer.findOneAndUpdate({id: id}, {$push: {commentar: newComment}});
+      console.log(eintrag);
+    }
+
+})
 
 app.listen(port, () => {
     console.log(`Server is running on Port ${port}`);

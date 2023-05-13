@@ -18,6 +18,7 @@ export default function Register() {
       const data = {
         email: form.email.value,
         password: form.password1.value,
+        nickname: form.name.value,
         id: uuid4(),
       };
 
@@ -61,6 +62,16 @@ export default function Register() {
                 className="form-control"
                 placeholder="Email"
                 type="email"
+              />
+            </div>
+            <div className="form-group padding">
+              <label>Your Nickname</label>
+              <input
+                name="name"
+                required
+                className="form-control"
+                placeholder="Nickname"
+                type="text"
               />
             </div>
             <div className="form-group padding">

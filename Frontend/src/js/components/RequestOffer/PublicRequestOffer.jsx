@@ -1,8 +1,13 @@
 import { useParams, Link } from "react-router-dom";
+import Commentar from "../commentar/Commentar";
+import { useRef, useState } from "react";
+import axios from "axios";
 
-export default function PublicRequestOffer({ offer, request }) {
+export default function PublicRequestOffer({ offer, request, getRequest, getOffer }) {
+  const formRef = useRef();
   const { id } = useParams();
   console.log(id);
+
 
   const selectedOffer = offer.find((element) => String(element.id) === id);
   const selectedRequest = request.find((element) => String(element.id) === id);
@@ -10,6 +15,38 @@ export default function PublicRequestOffer({ offer, request }) {
   let catastrophe = selectedOffer ? selectedOffer : selectedRequest;
 
   console.log(catastrophe);
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const dataForm = {
+      commentar: formRef.current.commentar.value,
+      id: catastrophe.id,
+      type: catastrophe.type
+    };
+
+    const config = {
+      url: "http://localhost:3001/api/commentar",
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
+      data: JSON.stringify(dataForm)
+    }
+    try {
+      const resp = await axios(config);
+      console.log(resp);
+    } catch(error){
+      console.log(error);
+    }
+    setTimeout(() => {
+      getRequest();
+      getOffer();
+    }, 1000);
+
+    formRef.current.commentar.value = "";
+
+  }
 
   return (
     <>
@@ -60,42 +97,36 @@ export default function PublicRequestOffer({ offer, request }) {
               </Link>
             </div>
 
-            <form>
+            <form
+            ref={formRef}
+            onSubmit={(e) => {
+              handleClick(e);
+            }}
+            >
               <div className="mt-5 row d-flex justify-content-center">
                 <div className="col-md-8 col-lg-6 card shadow-0 border">
                   <div className="card-body p-4 text-center">Comments</div>
 
                   <div className="form-outline mb-4">
                     <input
+                      name="commentar"
                       type="text"
                       id="addANote"
                       className="form-control"
                       placeholder="Type comment..."
                     />
-                    <button className="btn-sm mt-1 float-right btn btn-outline-danger">
+                    <button onSubmit={handleClick} className="btn-sm mt-1 float-right btn btn-outline-danger">
                       Add comment
                     </button>
                   </div>
 
-                  <div className="card mb-4">
-                    <div className="card-body">
-                      <p>Hier Kommentar einblenden</p>
-
-                      <div className="d-flex justify-content-between">
-                        <div className="d-flex flex-row align-items-center">
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(4).webp"
-                            alt="avatar"
-                            height="25"
-                          />
-                          <p className="small mb-0 ms-2">Name</p>
-                        </div>
-                        <div className="d-flex flex-row align-items-center">
-                          <p className="small text-muted mb-0">Upvote?</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  {catastrophe.commentar.map((el) => {
+                    return (
+                      <Commentar catastrophe={el}/>
+                    )
+                  })}
+                  
+                 
                 </div>
               </div>
             </form>

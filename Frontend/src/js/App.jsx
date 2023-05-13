@@ -53,7 +53,7 @@ function App() {
         <Route path='/Register' element={<Register />} />
         <Route path='/Public' element={<PublicProfile />} />
         <Route path='/' element={isLoggedIn ? <FeedCard offer={offer} setOffer={setOffer} request={request} setRequest={setRequest} getOffer={getOffer} getRequest={getRequest} handleLogout={handleLogout}/> : <Navigate to="/Login" replace />}></Route>
-        <Route path='/catastrophe/:id' element={<PublicRequestOffer offer={offer} request={request} /> }/> 
+        <Route path='/catastrophe/:id' element={<PublicRequestOffer offer={offer} request={request} getOffer={getOffer} getRequest={getRequest}/> }/> 
         </Routes>
       <Footer/>
       </Router>
