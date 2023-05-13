@@ -2,6 +2,8 @@ import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import axios from "axios";
+import toastify from "../toastify";
+
 
 export default function Login({handleLogin}) {
   const navigator = useNavigate();
@@ -26,9 +28,17 @@ export default function Login({handleLogin}) {
     try {
       const resp = await axios(config);
       console.log(resp);
-      localStorage.setItem("token", resp.data.token);
-      handleLogin();
-      navigator("/");
+      if (resp.data.message === "User does not exist") {
+        toastify(resp.data.message, "red");
+      } if (resp.data.message === "Password is not correct") {
+        toastify(resp.data.message, "red");
+      } if (resp.data.message === "Login successful") {
+        localStorage.setItem("token", resp.data.token);
+        handleLogin();
+        navigator("/");
+        toastify(resp.data.message)
+      }
+
     } catch (error) {
       console.log(error);
     }

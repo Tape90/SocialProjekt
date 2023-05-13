@@ -1,11 +1,14 @@
 import "./login.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { uuid4 } from "uuid4";
 import axios from "axios";
+import toastify from "../toastify";
 
 export default function Register() {
   const formRef = useRef();
+
+  const navigator = useNavigate();
 
   const getData = async (event) => {
     event.preventDefault();
@@ -34,9 +37,12 @@ export default function Register() {
       try {
         const resp = await axios(config);
         console.log(resp);
+        toastify(resp.data.message)
         if (resp.status !== 200 && resp.status !== 201) {
-          throw new Error("Register failed");
+          
+          throw new Error("Register failed");          
         }
+        navigator("/")
       } catch (error) {
         console.log(error);
       }
