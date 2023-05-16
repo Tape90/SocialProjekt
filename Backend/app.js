@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const expressLimit = require("express-rate-limit")
+const expressLimit = require("express-rate-limit");
+const nodemailer = require("nodemailer");
 
 const app = express();
 const port = process.env.Port;
@@ -219,6 +220,76 @@ app.put('/api/commentar', async(req, res) => {
 
 })
 
+//Passwort zurücksetzten
+
+app.post('/api/forgot', async (req, res) => {
+  const {email} = req.body;
+  console.log(email);
+  //Prüfen ob Email vorhanden
+  const user = await User.findOne({email: email});
+  console.log(user);
+  if (user === null) {
+    return res.send({message: "User does not exist!"})
+  }
+  //6 stelligen Code erzeugen
+  const code = Math.floor(100000 + Math.random() * 900000);
+  console.log(code);
+
+  //Email senden
+  const transponder = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD
+    }
+  });
+  const mailOptions = {
+    form: process.env.EMAIL,
+    to: email,
+    subject: "Reser password Cat-Net-App",
+    text: `Your reset code is ${code}`
+  };
+  transponder.sendMail(mailOptions, (error, info) => {
+    if (error){
+      console.log(error);
+      return res.send({message: "Problems to send email"})
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  })
+
+  //Token setzen
+  const token = jwt.sign({email: email}, process.env.JWT_Secret);
+  return res.send({message: "Email sent", toastify: `Email sent to ${email}`, token: token, code});
+
+})
+
+app.post("/api/reset", async (res, req) => {
+  const password = req.body.password;
+  const token = req.headers.authorization.split(" ")[1];
+  //Prüfen ob Daten da
+  if (!password || !token) {
+    return res.send({message: "Input wrong"})
+  }
+  //Token entschlüsseln
+  const decodedToken = jwt.verify(token, process.env.JWT_Secret);
+
+  //User vorhanden?
+  const user = await User.findOne({email: decodedToken.email});
+  if (user === null) {
+    console.log("User nicht gefunden " + decodedToken);
+  }
+
+  //Passwort hashen
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  //Update User Passwort
+  await User.findOneAndUpdate({email: decodedToken.email}, {password: hashedPassword});
+})
+
+
 app.listen(port, () => {
     console.log(`Server is running on Port ${port}`);
 });
+
+//dhwtofknvykftmso / laksdfjeilakjföl/ alöksdjfeiöafh

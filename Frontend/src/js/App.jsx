@@ -11,6 +11,7 @@ import useOffer from './customHooks/useOffer'
 import useRequest from './customHooks/useRequest'
 import PublicRequestOffer from './components/RequestOffer/PublicRequestOffer'
 import useUser from './customHooks/useUser'
+import ForgotPassword from './components/Login/ForgotPassword'
 import { useState, useEffect } from 'react'
 
 //BrowserRouter
@@ -24,6 +25,8 @@ function App() {
   const [offer, setOffer, getOffer] = useOffer();
   const [request, setRequest, getRequest] = useRequest();
   const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [resetNumber, setResetNumber] = useState(0);
+  const [emailToken, setEmailToken] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -54,6 +57,7 @@ function App() {
         <Route path='/Public' element={<PublicProfile />} />
         <Route path='/' element={isLoggedIn ? <FeedCard offer={offer} setOffer={setOffer} request={request} setRequest={setRequest} getOffer={getOffer} getRequest={getRequest} handleLogout={handleLogout}/> : <Navigate to="/Login" replace />}></Route>
         <Route path='/catastrophe/:id' element={<PublicRequestOffer offer={offer} request={request} getOffer={getOffer} getRequest={getRequest}/> }/> 
+        <Route path='/Forgot' element={<ForgotPassword />}></Route>
         </Routes>
       <Footer/>
       </Router>

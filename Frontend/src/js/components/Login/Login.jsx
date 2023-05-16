@@ -66,9 +66,9 @@ export default function Login({handleLogin}) {
                 />
               </div>
               <div className="form-group padding">
-                {/* <a className="float-right" href="#">
+                <Link to={'/Forgot'}><a className="float-right" href="#">
                   Forgot?
-                </a> */}
+                </a></Link>
                 <label>Your password</label>
                 <input
                   name="password"
