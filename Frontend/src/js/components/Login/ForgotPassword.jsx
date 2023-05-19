@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import axios from "axios";
 import toastify from "../toastify";
+import { useNavigate } from "react-router-dom";
 
-export default function ForgotPassword() {
+export default function ForgotPassword({setResetNumber, setEmailToken, resetNumber}) {
 
     const formRef = useRef();
+    const navigator = useNavigate();
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -31,6 +33,10 @@ export default function ForgotPassword() {
             }
             if (resp.data.message === "Email sent") {
                 toastify(resp.data.toastify);
+                setResetNumber(resp.data.code);
+                localStorage.setItem("reset", resp.data.token);
+                setEmailToken(true);
+                navigator("/Code");
             }
         } catch (error) {
             console.log(error);

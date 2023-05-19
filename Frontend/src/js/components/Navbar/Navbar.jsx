@@ -19,7 +19,7 @@ export default function Navbar({isLoggedIn, handleLogout}) {
     <>
     <nav className="navbar navbar-expand-lg bg-white">
       <div className="container-fluid">
-        <div className="text-danger navbar-brand">Kat-Net-App</div>
+        <div className="text-danger navbar-brand">Cat-Net-App</div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

@@ -10,6 +10,8 @@ import PublicProfile from './components/Profile/PublicProfile'
 import useOffer from './customHooks/useOffer'
 import useRequest from './customHooks/useRequest'
 import PublicRequestOffer from './components/RequestOffer/PublicRequestOffer'
+import Reset from './components/Login/Reset'
+import Code from './components/Login/Code'
 import useUser from './customHooks/useUser'
 import ForgotPassword from './components/Login/ForgotPassword'
 import { useState, useEffect } from 'react'
@@ -26,7 +28,7 @@ function App() {
   const [request, setRequest, getRequest] = useRequest();
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [resetNumber, setResetNumber] = useState(0);
-  const [emailToken, setEmailToken] = useState("");
+  const [emailToken, setEmailToken] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -57,7 +59,9 @@ function App() {
         <Route path='/Public' element={<PublicProfile />} />
         <Route path='/' element={isLoggedIn ? <FeedCard offer={offer} setOffer={setOffer} request={request} setRequest={setRequest} getOffer={getOffer} getRequest={getRequest} handleLogout={handleLogout}/> : <Navigate to="/Login" replace />}></Route>
         <Route path='/catastrophe/:id' element={<PublicRequestOffer offer={offer} request={request} getOffer={getOffer} getRequest={getRequest}/> }/> 
-        <Route path='/Forgot' element={<ForgotPassword />}></Route>
+        <Route path='/Forgot' element={<ForgotPassword setResetNumber={setResetNumber} setEmailToken={setEmailToken} resetNumber={resetNumber} />}></Route>
+        <Route path='/Reset' element={emailToken ? <Reset setEmailToken={setEmailToken}/> : <Navigate to="/Login" replace />}></Route>
+        <Route path='/Code' element={<Code resetNumber={resetNumber}/>}/>
         </Routes>
       <Footer/>
       </Router>

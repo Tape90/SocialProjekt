@@ -246,7 +246,7 @@ app.post('/api/forgot', async (req, res) => {
   const mailOptions = {
     form: process.env.EMAIL,
     to: email,
-    subject: "Reser password Cat-Net-App",
+    subject: "Reset password Cat-Net-App",
     text: `Your reset code is ${code}`
   };
   transponder.sendMail(mailOptions, (error, info) => {
@@ -264,9 +264,12 @@ app.post('/api/forgot', async (req, res) => {
 
 })
 
-app.post("/api/reset", async (res, req) => {
-  const password = req.body.password;
+app.post("/api/reset", async (req, res) => {
+  //console.log(req.body)
+  const {password} = req.body;
   const token = req.headers.authorization.split(" ")[1];
+  //console.log(password)
+  //console.log(token)
   //Prüfen ob Daten da
   if (!password || !token) {
     return res.send({message: "Input wrong"})
@@ -285,6 +288,8 @@ app.post("/api/reset", async (res, req) => {
 
   //Update User Passwort
   await User.findOneAndUpdate({email: decodedToken.email}, {password: hashedPassword});
+  res.send({message: "okay"})
+  console.log("Password updated")
 })
 
 
