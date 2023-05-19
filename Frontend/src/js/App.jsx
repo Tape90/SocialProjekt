@@ -18,6 +18,7 @@ import { useState, useEffect } from 'react'
 
 //BrowserRouter
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 //CSS
 import '../scss/App.css'
@@ -49,6 +50,7 @@ function App() {
 
   return (
     <div className="App">
+      <GoogleOAuthProvider clientId="628197608405-jcl088v35he0bk3gs4v6v3a74k503lt1.apps.googleusercontent.com">
       <Router>
       <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
       <Routes>
@@ -65,6 +67,7 @@ function App() {
         </Routes>
       <Footer/>
       </Router>
+      </GoogleOAuthProvider>
     </div>
   )
 }
