@@ -15,7 +15,6 @@ const forgotPWRouter = require("./routes/forgotPW")
 const resetRouter = require("./routes/reset")
 
 const app = express();
-const port = process.env.Port;
 
 app.use("/uploads", express.static("uploads"));
 app.use(cors());
@@ -58,7 +57,12 @@ app.use("/api/forgot", forgotPWRouter);
 
 app.use("/api/reset", resetRouter);
 
-app.listen(port, () => {
-  console.log(`Server is running on Port ${port}`);
-});
+if (process.env.Port) {
+  app.listen(process.env.Port, () => {
+    console.log(`Server is running on Port ${process.env.Port}`);
+  });
+}
+
+module.exports = app;
+
 
