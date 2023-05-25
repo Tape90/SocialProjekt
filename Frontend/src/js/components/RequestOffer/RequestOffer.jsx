@@ -93,10 +93,6 @@ export default function RequestOffer({ offer, setOffer, request, setRequest, get
           }
           const response = await axios(options);
           console.log(response.data); 
-          if (!response.ok) {
-            throw new Error("Failed to create post");
-          }
-
         } catch (error) {
           console.error(error);
 
