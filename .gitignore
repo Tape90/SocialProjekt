@@ -18,6 +18,7 @@ package-lock.json
 .vscode/*
 !.vscode/extensions.json
 .idea
+.env
 .DS_Store
 *.suo
 *.ntvs*
